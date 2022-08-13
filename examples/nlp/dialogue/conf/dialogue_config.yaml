@@ -65,9 +65,8 @@ model:
     num_output_layers: 2
     fc_dropout: 0.1
   
-  # Intent BIO type Classification model args
-  bio_slot_loss_weight: 0.2
-  slot_loss_mention_only_weight: 0.1
+  # Zero Shot Slot Filling model args
+  bio_slot_loss_weight: 0.5
   
   # SGDQA args
   encoder:
@@ -81,7 +80,7 @@ model:
     ## All tasks/models
     data_dir: ??? # location to load data from 
     dialogues_example_dir: ??? # store prediction files
-    task: sgd # [sgd, assistant, zero_shot, ms_marco, sgd_generation, design, mellon_qa, bio_type]
+    task: sgd # [sgd, assistant, zero_shot, ms_marco, sgd_generation, design, mellon_qa, zero_shot_slot_filling]
     debug_mode: false # small number of examples for debugging
     max_seq_length: 128 # the maximum number of tokens per sample
     
