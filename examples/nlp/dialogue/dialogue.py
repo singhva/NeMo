@@ -141,9 +141,7 @@ def main(cfg: DictConfig) -> None:
 
     if hasattr(cfg.model, 'test_ds') and cfg.model.test_ds.ds_item is not None:
         eval_device = [cfg.trainer.devices[0]] if isinstance(cfg.trainer.devices, list) else 1
-        trainer = pl.Trainer(
-            devices=eval_device, accelerator=cfg.trainer.accelerator, precision=16, strategy=NLPDDPStrategy()
-        )
+        trainer = pl.Trainer(devices=eval_device, accelerator=cfg.trainer.accelerator, precision=16, strategy=strategy)
         model.setup_multiple_test_data(test_data_config=cfg.model.test_ds)
         if model.prepare_test(trainer):
             trainer.test(model)
